@@ -152,7 +152,23 @@ def deleteProduct(productID):
 #deleteProduct(2)
 #print(pickle.load(open('inventory.dat', 'rb')))
 
-#10. 
+#10. already done in nb, check later code
+
+#11. cheapestFlight()
+def cheapestFlight():
+    with open('flight.dat', 'rb') as file:
+        data = pickle.load(file)
+        lowestFlight = None
+        for flight in data:
+            if lowestFlight:
+                if flight[2] < lowestFlight[2]:
+                    lowestFlight = flight
+            else:
+                lowestFlight = flight
+        print(lowestFlight, "has the lowest fare.")
+#pickle.dump([[zampy.random_number(2, False), zampy.random_name(), zampy.random_number(), zampy.random_city(), zampy.random_city()] for x in range(10)], open('flight.dat', 'wb'))
+#print(pickle.load(open('flight.dat', 'rb')))
+#cheapestFlight()
 
 #half yearly practice
 def mymean(listofvalues: list) -> int:

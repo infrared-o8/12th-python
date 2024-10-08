@@ -136,6 +136,17 @@ genres = [
     "Mystery", "Romance", "Sci-Fi", "Sport", "Thriller",
     "War", "Western", "Biographical", "Educational", "Experimental"
 ]
+cities = [
+    "NewYorkUS", "LondonUK", "TokyoJP", "ParisFR", "BeijingCN", "MumbaiIN", "MoscowRU", "SaoPauloBR", 
+    "SydneyAU", "DubaiAE", "BerlinDE", "MexicoCityMX", "LosAngelesUS", "TorontoCA", "ShanghaiCN", 
+    "DelhiIN", "BuenosAiresAR", "IstanbulTR", "JohannesburgZA", "SingaporeSG", "SeoulKR", "RomeIT", 
+    "BangkokTH", "JakartaID", "CairoEG", "KualaLumpurMY", "MadridES", "ChicagoUS", "LagosNG", 
+    "LimaPE", "RioDeJaneiroBR", "HongKongHK", "ManilaPH", "TehranIR", "NairobiKE", "KarachiPK", 
+    "BaghdadIQ", "BogotaCO", "HoChiMinhCityVN", "CasablancaMA", "RiyadhSA", "AthensGR", "WarsawPL", 
+    "ViennaAT", "StockholmSE", "BrusselsBE", "AmsterdamNL", "ZurichCH", "HelsinkiFI", "OsloNO", 
+    "CopenhagenDK", "LisbonPT", "BudapestHU", "PragueCZ", "MunichDE", "MilanIT", "MelbourneAU", 
+    "CapeTownZA", "TelAvivIL", "DohaQA", "WarsawPL"
+]
 
 def user_intlist() -> list:
     '''
@@ -206,6 +217,12 @@ def random_sport() -> str:
     Returns a random sport.
     '''
     return r.choice(sports)
+
+def random_city() -> str:
+    '''
+    Returns a random city with a country code.
+    '''
+    return r.choice(cities)
 
 def create_file_with_data(file_name="test1", file_type='.dat', data='Lorem ipsum dolor sit amet.'):
     '''
