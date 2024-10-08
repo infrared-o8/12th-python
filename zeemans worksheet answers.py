@@ -2,6 +2,7 @@ import pickle
 import zampy
 import math
 import csv
+import statistics
 #To find frequence of each word in a file, and displau the 5 most frequent words
 def find_frequency():
     file = open('sample.txt')
@@ -169,6 +170,44 @@ def cheapestFlight():
 #pickle.dump([[zampy.random_number(2, False), zampy.random_name(), zampy.random_number(), zampy.random_city(), zampy.random_city()] for x in range(10)], open('flight.dat', 'wb'))
 #print(pickle.load(open('flight.dat', 'rb')))
 #cheapestFlight()
+
+#12. findBookType: dont in nb, check later code.
+
+#13. cheapestBook
+def cheapestBook():
+    with open('book.dat', 'rb') as file:
+        data = pickle.load(file)
+        lowestBook = None
+        for key, value in data.items():
+            if lowestBook:
+                if value[2] < lowestBook[1][2]:
+                    lowestBook = [key, value]
+            else:
+                lowestBook = [key, value]
+    print('lowestPrice is:', lowestBook)
+
+#14. flightStats()
+def flightStats():
+    with open('flight.dat', 'rb') as file:
+        data = pickle.load(file)
+        lowestFlight = None
+        highestFlight = None
+        listOfFares = []
+        for record in data:
+            listOfFares.append(record[2])
+            if lowestFlight:
+                if record[2] < lowestFlight[2]:
+                    lowestFlight = record
+            else:
+                lowestFlight = record
+            if highestFlight:
+                if record[2] > highestFlight[2]:
+                    highestFlight = record
+            else:
+                highestFlight = record
+        print('lowestFlight:', lowestFlight, '\nHighestFlight:', highestFlight, '\nAverage fare:', statistics.mean(listOfFares))
+#flightStats()
+
 
 #half yearly practice
 def mymean(listofvalues: list) -> int:
