@@ -208,7 +208,76 @@ def flightStats():
         print('lowestFlight:', lowestFlight, '\nHighestFlight:', highestFlight, '\nAverage fare:', statistics.mean(listOfFares))
 #flightStats()
 
+#bookStats:
+def bookStats():
+    with open('book.dat', 'rb') as file:
+        data = pickle.load(file)
+        lowestBook, highestBook, listOFFares = None, None, []
+        for key, value in data.items():
+            listOFFares.append(value[2])
+            if lowestBook:
+                if value[2] < lowestBook[1][2]:
+                    lowestBook = [key, value]
+            else:
+                lowestBook = [key, value]
+            
+            if highestBook:
+                if value[2] > highestBook[1][2]:
+                    highestBook = [key, value]
+            else:
+                highestBook = [key, value]
+        print('lowestBook:', lowestBook, '\nhighestBook:', highestBook, '\nAverage price:', statistics.mean(listOFFares))
 
+#16. flightSearch()
+#print(pickle.load(open('flight.dat', 'rb')))
+def flightSearch(maxFare):
+    with open('flight.dat', 'rb') as file:
+        data = pickle.load(file)
+        listOfReqFlights = []
+        for record in data:
+            if record[2] <= maxFare:
+                if len(listOfReqFlights) > 0:
+                    for index in range(len(listOfReqFlights)):
+                        if record[2] <= listOfReqFlights[index][2]:
+                            listOfReqFlights.insert(index, record)
+                            break
+                        else:
+                            listOfReqFlights.append(record)
+                            break
+                else:
+                    listOfReqFlights.append(record)
+        print('Requested list in ascending order is:')
+        #print(listOfReqFlights)
+        for index in range(len(listOfReqFlights)):
+            print(f'{index + 1}. {listOfReqFlights[index]}')
+#flightSearch(8000)
+
+#17. bookSearch():
+
+def bookSearch(minPrice, bookType):
+    with open('book.dat', 'rb') as file:
+        data = pickle.load(file)
+        lBooks = []
+        for key, value in data.items():
+            if value[1] == bookType and value[2] >= minPrice: #value[1] == bookType and 
+                tempRecord = [key, value]
+                if len(lBooks) == 0:
+                    lBooks.append(tempRecord)
+                else:
+                    for index in range(len(lBooks)):
+                        if lBooks[index][1][2] <= value[2]:
+                            lBooks.insert(index, tempRecord)
+                            break
+                    else:
+                        lBooks.append(tempRecord)
+        for index in range(len(lBooks)):
+            print(f'{index + 1}. {lBooks[index]}')
+
+#data = dict([(zampy.random_number(2, False), [f"{zampy.random_name(1)}'s Book", f"{zampy.random_genre()}", zampy.random_number()]) for x in range(50)])
+#print(data)
+#pickle.dump(data, open('book.dat', 'wb'))
+#print(pickle.load(open('book.dat', 'rb')))
+#bookSearch(3000, 'Mystery')
 #half yearly practice
 def mymean(listofvalues: list) -> int:
     try:

@@ -145,7 +145,7 @@ cities = [
     "BaghdadIQ", "BogotaCO", "HoChiMinhCityVN", "CasablancaMA", "RiyadhSA", "AthensGR", "WarsawPL", 
     "ViennaAT", "StockholmSE", "BrusselsBE", "AmsterdamNL", "ZurichCH", "HelsinkiFI", "OsloNO", 
     "CopenhagenDK", "LisbonPT", "BudapestHU", "PragueCZ", "MunichDE", "MilanIT", "MelbourneAU", 
-    "CapeTownZA", "TelAvivIL", "DohaQA", "WarsawPL"
+    "CapeTownZA", "DohaQA", "WarsawPL"
 ]
 
 def user_intlist() -> list:
