@@ -273,6 +273,9 @@ def bookSearch(minPrice, bookType):
         for index in range(len(lBooks)):
             print(f'{index + 1}. {lBooks[index]}')
 
+#18.a. allow for user to add book records into book.dat, and count number of recrds by specific author in book.dat
+#18.b. count students who got less than 40% in class.dat 
+
 #data = dict([(zampy.random_number(2, False), [f"{zampy.random_name(1)}'s Book", f"{zampy.random_genre()}", zampy.random_number()]) for x in range(50)])
 #print(data)
 #pickle.dump(data, open('book.dat', 'wb'))
