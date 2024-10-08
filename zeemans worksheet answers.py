@@ -81,7 +81,7 @@ def uppertolower():
     new_file = open('new.txt', 'w+')
     new_file.write(updatedcontent)
     new_file.close()
-uppertolower()
+#uppertolower()
 #6. lowStockProducts() to read 'INVENTORY.DAT' display details where stock quantity less than 50
 #additionally, calculate and display the total count of such low stock products.
 #Structure: (ProductID, ProductName, Quantity, Price)
@@ -124,12 +124,35 @@ def updatePrice(productID, newPrice):
 #8. Add product that accepts a record with the structure as a parameter. Function should append the new product to
 # inventory.dat
 
-
-
+def addProduct():
+    mfile = open('inventory.dat', 'rb')
+    existingData = pickle.load(mfile)
+    mfile.close()
+    newRecord = (int(input('Enter Product ID: ')), input('Enter product name: '), int(input('Enter quantity: ')), int(input('Enter price: ')))
+    newData = existingData + (newRecord,)
+    #print(newData)
+    rfile = open('inventory.dat', 'wb')
+    pickle.dump(newData, rfile)
+    rfile.close()
+#addProduct()
 #print(pickle.load(open('inventory.dat', 'rb')))
 
+#9. deleteProduct()
 
+def deleteProduct(productID):
+    mfile = open('inventory.dat', 'rb')
+    existingData = pickle.load(mfile)
+    newData = ()
+    for record in existingData:
+        if record[0] == productID:
+            continue
+        newData += (record,)
+    rfile = open('inventory.dat', 'wb')
+    pickle.dump(newData, rfile)
+#deleteProduct(2)
+#print(pickle.load(open('inventory.dat', 'rb')))
 
+#10. 
 
 #half yearly practice
 def mymean(listofvalues: list) -> int:
