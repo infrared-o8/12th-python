@@ -584,3 +584,65 @@ def findbook(price: int):
         for key, value in data.items():
             if value[2] >= price:
                 print(f'Book with bookNO {key} and book details {value} has price more than/equal to {price}')
+
+#Venu is a python programmer working in a school. For the Annual Sports Event, he has created 4 a CSV file named result.csv, to store the results of students in different sports event. The
+#structure of result.csv is: [St_id,St_name,Game_Name,Result] Where
+#St_id is student ID (Integer)
+#St_name is Student Name (String)
+#Game_Name is name of game in which student is participating (String)
+#Result is result of the game whose value can either be 'Won', 'Lost' or 'Tie'
+#For efficiently maintaining data of the event, Venu wants to write the following user defined functions:
+#Accept : To accept record from the user and add it to the file result.csv. The column heading should also be added on top of the csv file.
+#woncount0: To count the number of students who have won any event.
+#As a python expert, help him complete the task.
+
+def accept():
+    st_id = int(input('Enter student ID: '))
+    st_name = input('Enter student name: ')
+    game_name = input('Enter game name: ')
+    result = input('Enter result (won/lost/tie): ')
+    record = [st_id, st_name, game_name, result]
+    with open('results.csv', 'r+') as file:
+        fc = csv.writer(file)
+        fc.writerows([['St_id', 'St_name', 'Game_Name', 'Result'], record])
+
+def woncount():
+    with open('results.csv') as file:
+        fc = csv.reader(file)
+        next(fc)
+        count = 0
+        for record in fc:
+            if record[-1].lower() == 'won':
+                count += 1 
+        print(count)
+
+#A csv file "Happiness.csv" contains the data of a survey. Each record of the
+#file contains the following data:
+#● Name of a country
+#● Population of the country
+#● Sample Size (Number of persons who participated in the survey in
+#that country)
+#● Happy (Number of persons who accepted that they were Happy)
+#For example, a sample record of the file may be:
+#[‘Signiland’, 5673000, 5000, 3426]
+#Write the following Python functions to perform the specified operations on
+#this file:
+#(I) Read all the data from the file in the form of a list and display all
+#those records for which the population is more than 5000000.
+#(II) Count the number of records in the file
+
+def popabove5000000():
+    with open('Happiness.csv') as file:
+        fc = csv.reader(file)
+        next(fc)
+        for record in fc:
+            if int(record[1]) > 5000000:
+                print(record)
+def countrecords():
+    with open('Happiness.csv') as file:
+        fc = csv.reader(file)
+        next(fc)
+        count = 0
+        for record in fc:
+            count += 1
+        print(count)
