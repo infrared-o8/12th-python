@@ -67,11 +67,21 @@ def find_longest_word():
 #5. read a text file and convert all uppercase to lowercase.
 def uppertolower():
     file = open('sample.txt')
-    content = file.read().lower()
+    content = file.read()
+    updatedcontent = ""
+    for char in content:
+        if char.isalpha():
+            if char.islower():
+                updatedcontent += char.upper()
+            elif char.isupper():
+                updatedcontent += char.lower()
+        else:
+            updatedcontent += char
+    print(updatedcontent)
     new_file = open('new.txt', 'w+')
-    new_file.write(content)
+    new_file.write(updatedcontent)
     new_file.close()
-
+uppertolower()
 #6. lowStockProducts() to read 'INVENTORY.DAT' display details where stock quantity less than 50
 #additionally, calculate and display the total count of such low stock products.
 #Structure: (ProductID, ProductName, Quantity, Price)
@@ -113,6 +123,8 @@ def updatePrice(productID, newPrice):
 #updatePrice(2, 10000)
 #8. Add product that accepts a record with the structure as a parameter. Function should append the new product to
 # inventory.dat
+
+
 
 #print(pickle.load(open('inventory.dat', 'rb')))
 
@@ -369,20 +381,56 @@ def POP(stack):
         return stack.pop()
     except:
         return None
-    
-data = {'KAPIL': 40, 'ABC': 50, 'DEF': 60}
-stack = []
-for key, value in data.items():
-    if value > 50:
-        PUSH(stack, key)
+def stackscores(): 
+    data = {'KAPIL': 40, 'ABC': 50, 'DEF': 60}
+    stack = []
+    for key, value in data.items():
+        if value > 50:
+            PUSH(stack, key)
 
-for index in range(len(stack)):
-    print(POP(stack))
+    for index in range(len(stack)):
+        print(POP(stack))
 
-data = [x*2 for x in range(1, 11)]
-for number in data:
-    if number % 2 == 0:
-        PUSH(stack, number)
-for index in range(len(stack)):
-    print(POP(stack))
-    
+def stackeevennumbers():
+    data = [x*2 for x in range(1, 11)]
+    stack = []
+    for number in data:
+        if number % 2 == 0:
+            PUSH(stack, number)
+    for index in range(len(stack)):
+        print(POP(stack))
+
+def stackmarks():
+    data = {101: (50, 60, 70), 102: (60, 70, 80), 103: (70, 80, 90)}
+    stack = []
+    for key, value in data.items():
+        if value[2] >= 80:
+            PUSH(stack, key)
+
+    while True:
+        triedPopping = POP(stack)
+        if triedPopping != None:
+            print(triedPopping)
+        else:
+            print('Stack empty.')
+            break
+
+def copy_rec_flights():
+    with open('flight.dat', 'rb') as mainfile:
+        newfile = open("record.dat", 'wb')
+        recordstodump = []
+        data = pickle.load(mainfile)
+        for record in data:
+            if record[-2].lower() == 'delhi' and record[-1].lower() == 'mumbai':
+                recordstodump.append(record)
+        pickle.dump(recordstodump, newfile)
+        newfile.close()
+
+#pickle.dump([[1, zampy.random_name(), zampy.random_number(), 'Delhi', 'Mumbai'], [2, zampy.random_name(), zampy.random_number(), 'Mumbai', 'Delhi'], [3, zampy.random_name(), zampy.random_number(), 'Delhi', 'Mumbai']], open('flight.dat', 'wb'))
+
+def findbook(price: int):
+    with open('book.dat', 'rb') as file:
+        data = pickle.load(file)
+        for key, value in data.items():
+            if value[2] >= price:
+                print(f'Book with bookNO {key} and book details {value} has price more than/equal to {price}')
