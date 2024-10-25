@@ -49,7 +49,7 @@ def reverse_line_order():
     new_file = open('new.txt', 'w+')
     new_file.writelines(main_file.readlines()[::-1])
     new_file.close()
-reverse_line_order()
+#reverse_line_order()
 
 #4. WAP to read a text file and find the longest word in the file.
 def find_longest_word():
@@ -646,3 +646,23 @@ def countrecords():
         for record in fc:
             count += 1
         print(count)
+
+'''with open('C:\\Users\\Kassim\\Documents\\GitHub\\12th-python\\sample files\\book.dat', 'rb') as file:
+    newfile = open('booksfortesting.dat','ab')
+    data = pickle.load(file)
+    for item in data.items():
+        pickle.dump(item, newfile)
+    newfile.close()
+def tryinginfiniteload():
+    with open('booksfortesting.dat', 'rb') as file:
+        iteration = 0
+        while True:
+            try:
+                record = pickle.load(file)
+                print(record)
+                iteration += 1
+                print(iteration)
+            except EOFError:
+                print('Encountered EOFError.')
+                break
+tryinginfiniteload()'''
